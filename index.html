@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>ToDo List</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="main.js"></script>
+    <link rel="stylesheet" href="todo.css">
+</head>
+<body>
+    <div class="cover">
+        <h1>ToDo List</h1>
+        <br/>
+        <div ng-controller="mainCtrl">
+            <form ng-submit="addNew()">
+                <input type="text" ng-model="newTaskBody" id="textForm" placeholder="e.x.) todo" required>
+                <select ng-model="selectedHour" ng-options="hour for hour in hours"></select>
+                <select ng-model="selectedMinute" ng-options="minute for minute in minutes"></select>
+                <input type="submit" id="submit" value="add">
+            </form>
+            <p>Finished Task : {{getDoneCount()}}/{{tasks.length}}
+                <input type="button" ng-click="complete()" id="btnAll" value="All Compelte!">
+                <button ng-click="deleteDone()">delete</button>
+            </p>
+            <span>Filter：</span><input type="text" ng-model="q"><br/>
+            <table>
+                <th>
+                    <td class="head">add day</td><td class="head" id="thTodo">todo</td><td class="head">alert date/time</td><td class="head2"></td>
+                </th>
+                <tr ng-repeat="task in tasks | filter:q">
+                    <td><input type="checkbox" ng-model="task.done"></td>
+                    <td class="data"><span class="done-{{task.done}}">{{task.date}}</span></td>
+                    <td class="data" id="trTodo"><span class="done-{{task.done}}">{{task.body}}</span></td>
+                    <td class="data"><span class="done-{{task.done}}">{{task.alertTime}}</span></td>
+                    <td class="data2"><a href ng-click="tasks.splice($index, 1)">[x]</a></td>
+                </tr>
+            </table>
+        </div>   
+    </div> 
+</body>
+</html>
