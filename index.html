@@ -9,20 +9,21 @@
 </head>
 <body>
     <div class="cover">
-        <h1>ToDo List</h1>
+        <h1><span class="moji">T</span>o<span class="moji">D</span>o<span class="moji">L</span>ist</h1>
         <br/>
         <div ng-controller="mainCtrl">
             <form ng-submit="addNew()">
                 <input type="text" ng-model="newTaskBody" id="textForm" placeholder="e.x.) todo" required>
+                <input type="date" ng-model="alertDate">
                 <select ng-model="selectedHour" ng-options="hour for hour in hours"></select>
                 <select ng-model="selectedMinute" ng-options="minute for minute in minutes"></select>
                 <input type="submit" id="submit" value="add">
             </form>
-            <p>Finished Task : {{getDoneCount()}}/{{tasks.length}}
+            <p class="moji2">Finished Task : {{getDoneCount()}}/{{tasks.length}} &nbsp &nbsp
                 <input type="button" ng-click="complete()" id="btnAll" value="All Compelte!">
                 <button ng-click="deleteDone()">delete</button>
             </p>
-            <span>Filter：</span><input type="text" ng-model="q"><br/>
+            <span class="moji2">Filter：</span><input type="text" ng-model="q"><br/>
             <table>
                 <th>
                     <td class="head">add day</td><td class="head" id="thTodo">todo</td><td class="head">alert date/time</td><td class="head2"></td>
